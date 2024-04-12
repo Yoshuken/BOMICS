@@ -1,4 +1,5 @@
 import { fetchData, reloadPage } from './functions.js'
+import { apiURL } from './constants.js';
 
 const info = localStorage.getItem('toggleTab');
 const tabType = JSON.parse(info);
@@ -16,7 +17,7 @@ const loadPage = async (tab) => {
         } catch (err) { }
         finally {
             const login_token = localStorage.getItem("login_token_key");
-            var res = await fetchData("http://localhost:3000/bookCollection", "get", false, login_token);
+            var res = await fetchData(apiURL + "bookCollection", "get", false, login_token);
         }
     } else {
         const bodyElm = document.querySelector('body');
@@ -25,7 +26,7 @@ const loadPage = async (tab) => {
         indexBodyElm.classList.add("comic-style");
 
         const login_token = localStorage.getItem("login_token_key");
-        var res = await fetchData("http://localhost:3000/comicCollection", "get", false, login_token);
+        var res = await fetchData(apiURL + "comicCollection", "get", false, login_token);
     }
     const collection = res.result;
     collection.forEach(item => {
@@ -105,9 +106,9 @@ async function deleteItem(e) {
     const id = e.target.getAttribute("hidden-id");
     const login_token = localStorage.getItem("login_token_key");
     if (e.target.getAttribute("id-from") == "books") {
-        var res = await fetchData("http://localhost:3000/deleteBook", "delete", { "id": id }, login_token);
+        var res = await fetchData(apiURL + "deleteBook", "delete", { "id": id }, login_token);
     } else {
-        var res = await fetchData("http://localhost:3000/deleteComic", "delete", { "id": id }, login_token);
+        var res = await fetchData(apiURL + "deleteComic", "delete", { "id": id }, login_token);
     }
     e.target.innerHTML = '<i class="fa-solid fa-cog fa-spin"></i>';
     reloadPage();

@@ -1,4 +1,5 @@
 import { fetchData } from "./functions.js";
+import { apiURL } from "./constants.js";
 
 const searchString = localStorage.getItem('inputValue');
 const searchObj = JSON.parse(searchString);
@@ -16,9 +17,8 @@ if (searchObj.from == "books") {
 
 
 async function fetchSearch(value, endpoint = "searchBooks") {
-    const url = "http://localhost:3000/";
     const login_token = localStorage.getItem("login_token_key");
-    const response = await fetchData(url + endpoint, "post", { "value": value }, login_token);
+    const response = await fetchData(apiURL + endpoint, "post", { "value": value }, login_token);
 
     if (endpoint === "searchBooks") {
         response.result.items.forEach(book => {
@@ -37,14 +37,15 @@ modalBtn.addEventListener("click", async (e) => {
     const login_token = localStorage.getItem("login_token_key");
     if (e.currentTarget.getAttribute("content-type") == "book") {
         const book = e.currentTarget.dataset.book;
-        const res = await fetchData("http://localhost:3000/searchInsertBooks", "POST", { values: JSON.parse(book) }, login_token);
+        const res = await fetchData(apiURL + "searchInsertBooks", "POST", { values: JSON.parse(book) }, login_token);
         responseHandler(res);
     } else {
         const comic = e.currentTarget.dataset.comic;
-        const res = await fetchData("http://localhost:3000/insertComics", "POST", { values: JSON.parse(comic) }, login_token);
+        const res = await fetchData(apiURL + "insertComics", "POST", { values: JSON.parse(comic) }, login_token);
         responseHandler(res);
     }
 });
+
 
 function responseHandler(res) {
     const resElm = parent.document.querySelector("#myModal span");

@@ -1,11 +1,10 @@
 import { fetchData, reloadPage } from "./functions.js";
 import { customAlert } from "./alert.js"; // if you don't add .js it wil catch a syntax error   
-
+import { apiURL } from "./constants.js";
 
 // DOM elements
 const signUpForm = document.querySelector("#signup");
 const signInForm = document.querySelector("#signin");
-const apiURL = "http://localhost:3000/"
 
 
 signUpForm.addEventListener("submit", async (e) => {

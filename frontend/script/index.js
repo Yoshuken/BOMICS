@@ -1,4 +1,5 @@
 import { fetchData } from "./functions.js";
+import { apiURL } from "./constants.js";
 
 // UI html templates routing 
 const comicsTab = document.querySelector("div#comics");
@@ -65,7 +66,7 @@ logoElem.addEventListener('click', (e) => {
 
 (async () => {
     const login_token = localStorage.getItem("login_token_key");
-    var res = await fetchData("http://localhost:3000/getEmail", "get", false, login_token);
+    var res = await fetchData(apiURL + "getEmail", "get", false, login_token);
 
     const userElm = document.querySelector("div.dropdown__text > span");
     userElm.innerHTML = res.email;

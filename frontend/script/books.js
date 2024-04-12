@@ -1,9 +1,10 @@
 import {fetchData} from './functions.js';
+import { apiURL } from './constants.js';
 
 async function loadBooks(carouselRow, type) {
 
     try {
-        const response = await fetch(`http://localhost:3000/${type}`);
+        const response = await fetch(apiURL + type);
         const data = await response.json();
         const infoBooks = data.result
 
@@ -59,13 +60,13 @@ const resElm = parent.document.querySelector(".modal-content span");
 modalBtn.addEventListener("click", async (e) => {
     const book = e.currentTarget.dataset.book;
     const login_token = localStorage.getItem('login_token_key');
-    const res = await fetchData("http://localhost:3000/insertBooks", "POST", { values: JSON.parse(book) }, login_token);
+    const res = await fetchData(apiURL + "insertBooks", "POST", { values: JSON.parse(book) }, login_token);
     if (res.response == "yes") {
         resElm.innerHTML = res.result;
     } else {
         resElm.innerHTML = res.result;
     }
-    closeModal();
+    closeModal(); 
 });
 
 // close modal after adding an item

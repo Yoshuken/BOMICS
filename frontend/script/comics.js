@@ -1,9 +1,10 @@
 import { fetchData } from "./functions.js";
+import { apiURL } from "./constants.js";
 
 async function loadComic(carouselRow, type) {
 
     try {
-        const response = await fetch(`http://localhost:3000/${type}`);
+        const response = await fetch(apiURL + {type});
         const data = await response.json();
         const infoManga = data.result
 
@@ -51,7 +52,7 @@ const resElm = parent.document.querySelector(".modal-content span")
 modalBtn.addEventListener("click", async (e) => {
     const comic = e.currentTarget.dataset.comic;
     const login_token = localStorage.getItem("login_token_key");
-    const res = await fetchData("http://localhost:3000/insertComics", "POST", { values: JSON.parse(comic) }, login_token);
+    const res = await fetchData(apiURL + "insertComics", "POST", { values: JSON.parse(comic) }, login_token);
     if (res.response == "yes") {
         resElm.innerHTML = res.result;
     } else {
