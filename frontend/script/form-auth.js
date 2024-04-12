@@ -27,6 +27,7 @@ signUpForm.addEventListener("submit", async (e) => {
 
     if (res.status === 500 || res.status === 204 || res.status === 401) {
         customAlert.alert(res.message);
+        reloadPage();
         return;
     } else {
         customAlert.alert(res.message, "Welcome aboard");

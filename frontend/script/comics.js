@@ -4,7 +4,7 @@ import { apiURL } from "./constants.js";
 async function loadComic(carouselRow, type) {
 
     try {
-        const response = await fetch(apiURL + {type});
+        const response = await fetch(apiURL + type);
         const data = await response.json();
         const infoManga = data.result
 
