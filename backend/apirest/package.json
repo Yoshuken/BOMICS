@@ -1,0 +1,26 @@
+{
+  "name": "proyecto_final",
+  "version": "1.0.0",
+  "description": "Proyecto final IFCD0111 CIFO Violeta 23-24",
+  "main": "api.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --trace-warnings --watch --env-file=.env ./api.js",
+    "insert": "node --trace-warnings --env-file=.env ./utilities/sql-insert.js"
+  },
+  "author": "IFCD0110 CIFO Violeta 23-24",
+  "license": "ISC",
+  "dependencies": {
+    "@consumet/extensions": "^1.5.6",
+    "axios": "^1.6.8",
+    "bcrypt": "^5.1.1",
+    "cheerio": "^1.0.0-rc.12",
+    "cors": "^2.8.5",
+    "express": "^4.18.3",
+    "jsonwebtoken": "^9.0.2",
+    "mysql2": "^3.9.3",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0",
+    "uuid": "^9.0.1"
+  }
+}

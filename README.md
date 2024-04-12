@@ -1,1 +1,2 @@
-# BOMICS
+# proyectos
+repositorio para proyectos de clase

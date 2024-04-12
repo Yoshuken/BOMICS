@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    background-color: #F8F3ED;
+    color: #2c1810;
+    font-family: "Montserrat", sans-serif;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 30px;
+}
+
+article {
+    width: 45%;
+    height: 300px;
+    display: flex;
+    margin: 10px;
+    background: #f7e3c5;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+}
+
+
+img {
+    object-fit: contain;
+    margin-right: 15px;
+    border-radius: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    height: 80%;
+    max-width: 150px;
+    min-width: 120px;
+    min-height: 80%;
+}
+
+.image-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15px;
+    flex: 1;
+}
+
+.content-box h1 {
+    max-height: 30px;
+    overflow-y: hidden;
+}
+
+.content-box p {
+    max-height: 120px;
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+
+.content-box a {
+    color: black;
+    text-decoration: none;
+}
+
+.comics-body {
+    background-color: #eef2f8;
+}
+
+.comics-article {
+    background-color: #8FAFD4;
+}
+
+.bot-div {
+    display: flex;
+    justify-content: space-around;
+    min-height: 24px;
+}
+
+.bot-div a {
+    font-size: 1.2em;
+}
+
+.delete-btn {
+    background-color: black;
+    outline: none;
+    border: 0;
+    font-weight: 600;
+    border-radius: 8px;
+    color: white;
+    transition: 200ms;
+}
+
+.delete-btn:hover {
+    cursor: pointer;
+    background-color: #303030;
+}
+
+
+.delete-btn {
+  background: #ca3737;
+  border-radius: 11px;
+  color: #fff;
+  padding: 5px 2px;
+  cursor: pointer;
+  display: flex;
+  font-family: Mija,-apple-system,BlinkMacSystemFont,Roboto,"Roboto Slab","Droid Serif","Segoe UI",system-ui,Arial,sans-serif;
+  font-size: 1.15em;
+  font-weight: 700;
+  justify-content: center;
+  text-align: center;
+  text-shadow: rgba(0, 0, 0, .3) 1px 1px 1px;
+  text-underline-offset: 1px;
+  transition: all .2s ease-in-out;
+  width: 20%;
+  border: 0;
+}
+
+.delete-btn:active,
+.delete-btn:focus {
+  border-bottom-style: none;
+  border-color: #dadada;
+  box-shadow: rgba(0, 0, 0, .3) 0 3px 3px inset;
+  outline: 0;
+}
+
+.delete-btn:hover {
+  border-bottom-style: none;
+  border-color: #dadada;
+}
+

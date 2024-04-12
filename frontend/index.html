@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Sign In to Bomics</title>
+    <link rel="stylesheet" type="text/css" href="./css/sign.css">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+    <script type="module" src="./script/form-auth.js" defer></script>
+    <link rel="stylesheet" href="./css/alert.css">
+    <script src="https://kit.fontawesome.com/e7eab986ff.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="main">
+        <input type="checkbox" id="chk" aria-hidden="true">
+
+        <div class="signup">
+            <form action=# id="signup">
+                <label for="chk" aria-hidden="true">Sign up</label>
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button>Sign up</button>
+            </form>
+        </div>
+
+        <div class="login">
+            <form action=# id="signin">
+                <label for="chk" aria-hidden="true">Login</label>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button>Login</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        function CustomAlert() {
+            this.alert = function (message, title) {
+                document.body.innerHTML = document.body.innerHTML + '<div id="dialogoverlay"></div><div id="dialogbox" class="slit-in-vertical"><div><div id="dialogboxhead"></div><div id="dialogboxbody"></div><div id="dialogboxfoot"></div></div></div>';
+
+                let dialogoverlay = document.getElementById('dialogoverlay');
+                let dialogbox = document.getElementById('dialogbox');
+
+                let winH = window.innerHeight;
+                dialogoverlay.style.height = winH + "px";
+
+                dialogbox.style.top = "100px";
+
+                dialogoverlay.style.display = "block";
+                dialogbox.style.display = "block";
+
+                document.getElementById('dialogboxhead').style.display = 'block';
+
+                if (typeof title === 'undefined') {
+                    document.getElementById('dialogboxhead').style.display = 'none';
+                } else {
+                    document.getElementById('dialogboxhead').innerHTML = '<i class="fa fa-exclamation-circle" aria-hidden="true"></i> ' + title;
+                }
+                document.getElementById('dialogboxbody').innerHTML = message;
+                document.getElementById('dialogboxfoot').innerHTML = '<button class="pure-material-button-contained active" onclick="customAlert.ok()">OK</button>';
+            }
+
+            this.ok = function () {
+                document.getElementById('dialogbox').style.display = "none";
+                document.getElementById('dialogoverlay').style.display = "none";
+            }
+        }
+
+        let customAlert = new CustomAlert();
+    </script>
+</body>
+
+</html>
