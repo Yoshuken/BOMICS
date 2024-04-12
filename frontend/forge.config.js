@@ -17,10 +17,10 @@ module.exports = {
       config: {
         repository: {
           owner: 'yoshuken',
-          name: 'bomics'
+          name: 'BOMICS',
         },
-        prerelease: true
+        prerelease: true,
       }
     }
-  ]
+  ],
 };
