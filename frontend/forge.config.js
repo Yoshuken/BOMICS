@@ -6,8 +6,20 @@ module.exports = {
     {
       name: '@electron-forge/maker-squirrel',
       config: {
-        authors: 'Shujian',
-        description: 'CIFO project'
+        authors: 'Yoshuken',
+        description: 'bomics. books and comics library for oneself'
+      }
+    }
+  ],
+  publishers: [
+    {
+      name: '@electron-forge/publisher-github',
+      config: {
+        repository: {
+          owner: 'yoshuken',
+          name: 'bomics'
+        },
+        prerelease: true
       }
     }
   ]
