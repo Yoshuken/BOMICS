@@ -11,6 +11,9 @@ module.exports = {
       }
     }
   ],
+  packagerConfig: {
+    icon: './images/icon.jpg' 
+  },
   publishers: [
     {
       name: '@electron-forge/publisher-github',
