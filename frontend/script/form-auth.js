@@ -35,6 +35,7 @@ signUpForm.addEventListener("submit", async (e) => {
     reloadPage();
 });
 
+
 signInForm.addEventListener("submit", async (e) => {
     e.preventDefault();
     e.stopPropagation();
