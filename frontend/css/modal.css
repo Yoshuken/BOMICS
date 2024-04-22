@@ -12,9 +12,9 @@
     background-color: rgba(0, 0, 0, 0.4);
 }
 
-.modal-content {
+#add-form {
     background-color: #000000eb;
-    margin: 15% auto;
+    margin: 10% auto;
     padding: 20px;
     width: 30%;
     border-radius: 22px;
@@ -35,8 +35,20 @@
     margin-bottom: 20px;
 }
 
+.modal-content input {
+  margin-bottom: 20px;
+  margin-top: 4px;
+  text-align: center;
+}
+
+.modal-content textarea {
+  margin-bottom: 20px;
+  margin-top: 4px;
+}
+
 .modal-content span {
     margin-bottom: 15px;
+    height: 30px;
 }
 
 #yes-btn{

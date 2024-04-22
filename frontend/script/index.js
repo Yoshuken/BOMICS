@@ -57,6 +57,7 @@ logoElem.addEventListener('click', (e) => {
     if (!booksTab.classList.selected) {
         booksTab.classList.add('selected');
         comicsTab.classList.remove('selected');
+        try { bodyElm.classList.remove("comics-style"); } catch (err) { }
         const searchObj = { from: "books" };
         const searchObjString = JSON.stringify(searchObj);
         localStorage.setItem('toggleTab', searchObjString);

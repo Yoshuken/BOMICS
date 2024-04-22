@@ -10,8 +10,10 @@ const loadPage = async (tab) => {
         try {
             const bodyElm = document.querySelector('body');
             bodyElm.classList.remove("comics-body");
+
             const indexBodyElm = parent.document.querySelector("body");
             indexBodyElm.classList.remove("comic-style");
+            
             const articleElm = document.querySelector('article');
             articleElm.classList.remove("comics-article");
         } catch (err) { }

@@ -59,8 +59,15 @@ const modalBtn = parent.document.querySelector("#yes-btn");
 const resElm = parent.document.querySelector(".modal-content span");
 modalBtn.addEventListener("click", async (e) => {
     const book = e.currentTarget.dataset.book;
+    const book_json = JSON.parse(book);
+    const score = parent.document.querySelector("#score");
+    const review = parent.document.querySelector("#review");
+
+    book_json["score"] = score.value;
+    book_json["review"] = review.value;
+
     const login_token = localStorage.getItem('login_token_key');
-    const res = await fetchData(apiURL + "insertBooks", "POST", { values: JSON.parse(book) }, login_token);
+    const res = await fetchData(apiURL + "insertBooks", "POST", { values: book_json }, login_token);
     if (res.response == "yes") {
         resElm.innerHTML = res.result;
     } else {

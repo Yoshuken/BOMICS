@@ -35,13 +35,26 @@ async function fetchSearch(value, endpoint = "searchBooks") {
 const modalBtn = parent.document.querySelector(".modal-content button");
 modalBtn.addEventListener("click", async (e) => {
     const login_token = localStorage.getItem("login_token_key");
+    const score = parent.document.querySelector("#score");
+    const review = parent.document.querySelector("#review");
+
     if (e.currentTarget.getAttribute("content-type") == "book") {
         const book = e.currentTarget.dataset.book;
-        const res = await fetchData(apiURL + "searchInsertBooks", "POST", { values: JSON.parse(book) }, login_token);
+        const book_json = JSON.parse(book);
+
+        book_json["score"] = score.value;
+        book_json["review"] = review.value;
+
+        const res = await fetchData(apiURL + "searchInsertBooks", "POST", { values: book_json } , login_token);
         responseHandler(res);
     } else {
         const comic = e.currentTarget.dataset.comic;
-        const res = await fetchData(apiURL + "insertComics", "POST", { values: JSON.parse(comic) }, login_token);
+        const comic_json = JSON.parse(comic);
+
+        comic_json["score"] = score.value;
+        comic_json["review"] = review.value;
+
+        const res = await fetchData(apiURL + "insertComics", "POST", { values: comic_json }, login_token);
         responseHandler(res);
     }
 });
@@ -92,6 +105,12 @@ function showResults(source) {
         const modal = parent.document.querySelector("#myModal");
         const titleElm = parent.document.querySelector(".modal-content h4");
         titleElm.innerHTML = e.target.parentElement.firstChild.innerHTML;
+
+        const score = parent.document.querySelector("#score");
+        const review = parent.document.querySelector("#review");
+
+        source["score"] = score.value;
+        source["review"] = review.value;
 
         modalBtn.dataset.book = JSON.stringify(source);
         modalBtn.setAttribute("content-type", "book");

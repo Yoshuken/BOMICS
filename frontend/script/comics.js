@@ -51,8 +51,15 @@ const modalBtn = parent.document.querySelector(".modal-content button");
 const resElm = parent.document.querySelector(".modal-content span")
 modalBtn.addEventListener("click", async (e) => {
     const comic = e.currentTarget.dataset.comic;
+    const comic_json = JSON.parse(comic);
+    const score = parent.document.querySelector("#score");
+    const review = parent.document.querySelector("#review");
+
+    comic_json["score"] = score.value;
+    comic_json["review"] = review.value;
+
     const login_token = localStorage.getItem("login_token_key");
-    const res = await fetchData(apiURL + "insertComics", "POST", { values: JSON.parse(comic) }, login_token);
+    const res = await fetchData(apiURL + "insertComics", "POST", { values: comic_json }, login_token);
     if (res.response == "yes") {
         resElm.innerHTML = res.result;
     } else {

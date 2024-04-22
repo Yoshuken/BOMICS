@@ -4,12 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="module" src="./script/index.js" defer></script>
-    <script src="https://kit.fontawesome.com/e7eab986ff.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/index-style.css">
     <link rel="stylesheet" href="./css/modal.css">
+    <link rel="stylesheet" href="./css/alert.css">
     <script src="./script/modal.js" defer></script>
+    <script type="module" src="./script/alert.js" defer></script>
+    <script type="module" src="./script/index.js" defer></script>
+    <script src="https://kit.fontawesome.com/e7eab986ff.js" crossorigin="anonymous"></script>
     <title>Bomics</title>
+
+    <script>
+        ok = function () {
+        document.getElementById('dialogbox').style.display = "none";
+        document.getElementById('dialogoverlay').style.display = "none";
+    }
+    </script>
 </head>
 
 <body>
@@ -67,16 +76,23 @@
     <div id="myModal" class="modal">
 
         <div class="modal-content">
-            <h3>Are you sure you want to add </h3>
-            <h4></h4>
-            <span></span>
-            <div>
-                <button id="yes-btn">Add</button>
-                <button id="no-btn">Quit</button>
-            </div>
+            <form id="add-form">
+                <h3>Are you sure you want to add </h3>
+                <h4></h4>
+                <label for="score">Score</label>
+                <input type="text" name="score" id="score">
+                <label for="review">Review</label>
+                <textarea name="review" id="review" cols="40" rows="10"></textarea>
+                <span></span>
+                <div>
+                    <button id="yes-btn" type="button">Add</button>
+                    <button id="no-btn" type="button">Quit</button>
+                </div>
+            </form>
         </div>
 
     </div>
+    
 </body>
 
 </html>

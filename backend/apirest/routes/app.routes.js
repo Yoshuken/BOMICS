@@ -54,8 +54,8 @@ class BookRouter {
       const values = req.body.values;
       const result = await connexion.query("select id from user where email = ?", [req.email]);
       try {
-        let query = `insert into book_collection values (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
-        connexion.query(query, [result[0].id, values.isbn, values.title, values.author, values.publish_date, values.description, values.pagecount, values.image, values.infoLink], (error, results, fields) => {
+        let query = `insert into book_collection values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+        connexion.query(query, [result[0].id, values.isbn, values.title, values.author, values.publish_date, values.description, values.pagecount, values.image, values.infoLink, values.score, values.review], (error, results, fields) => {
           if (error) {
             console.error(error);
             res.json({
@@ -80,8 +80,8 @@ class BookRouter {
       const values = req.body.values;
       const result = await connexion.query("select id from user where email = ?", [req.email]);
       try {
-        let query = `insert into book_collection values (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
-        connexion.query(query, [result[0].id, values.industryIdentifiers[0].identifier, values.title, values.authors[0], values.publishedDate, values.description, values.pageCount, this.thumbnailTry(values), values.infoLink], (error, results, fields) => {
+        let query = `insert into book_collection values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+        connexion.query(query, [result[0].id, values.industryIdentifiers[0].identifier, values.title, values.authors[0], values.publishedDate, values.description, values.pageCount, this.thumbnailTry(values), values.infoLink, values.score, values.review], (error, results, fields) => {
           if (error) {
             console.error(error);
             res.json({
@@ -118,8 +118,8 @@ class BookRouter {
       const values = req.body.values;
       const result = await connexion.query("select id from user where email = ?", [req.email]);
       try {
-        let query = `insert into comics_collection values (?, ?, ?, ?)`;
-        connexion.query(query, [result[0].id, values.id, values.title, values.image], (error, results, fields) => {
+        let query = `insert into comics_collection values (?, ?, ?, ?, ?, ?)`;
+        connexion.query(query, [result[0].id, values.id, values.title, values.image, values.score, values.review], (error, results, fields) => {
           if (error) {
             console.error(error);
             res.json({
@@ -159,10 +159,11 @@ class BookRouter {
   }
 
   setDeleteRoute(endpoint, query) {
-    this.router.delete(endpoint, verifyToken, (req, res) => {
+    this.router.delete(endpoint, verifyToken, async (req, res) => {
       const data = req.body;
+      const result = await connexion.query("select id from user where email = ?", [req.email]);
       try {
-        connexion.query(query, [data.id], (error, results, fields) => {
+        connexion.query(query, [data.id, result[0].id], (error, results, fields) => {
           if (error) {
             this.handleError(res, error, "Query Error");
           } else {
@@ -201,8 +202,8 @@ Router.setInsertComicRoute("/insertComics");
 Router.setInsertSearchBookRoute("/searchInsertBooks");
 Router.setupRouteLibrary("/bookCollection", "book_collection");
 Router.setupRouteLibrary("/comicCollection", "comics_collection");
-Router.setDeleteRoute("/deleteBook", "delete from book_collection where isbn = ?");
-Router.setDeleteRoute("/deleteComic", "delete from comics_collection where id = ?");
+Router.setDeleteRoute("/deleteBook", "delete from book_collection where isbn = ? and user_id = ?");
+Router.setDeleteRoute("/deleteComic", "delete from comics_collection where id = ? and user_id = ?");
 
 
 module.exports = Router.getRouter();
