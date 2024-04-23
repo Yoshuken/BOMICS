@@ -56,7 +56,7 @@ async function loadBooks(carouselRow, type) {
 
 
 const modalBtn = parent.document.querySelector("#yes-btn");
-const resElm = parent.document.querySelector(".modal-content span");
+const resElm = parent.document.querySelector("#myModal .modal-content span");
 modalBtn.addEventListener("click", async (e) => {
     const book = e.currentTarget.dataset.book;
     const book_json = JSON.parse(book);
@@ -114,8 +114,8 @@ function showBooks(book, carouselRow, cell = "cell-deco") {
     addBtn.appendChild(document.createTextNode("Add"));
     addBtn.addEventListener("click", (e) => {
         const modal = parent.document.querySelector("#myModal");
-        const titleElm = parent.document.querySelector(".modal-content h4");
-        titleElm.innerHTML = e.target.previousSibling.previousSibling.innerHTML;
+        const titleElm = parent.document.querySelector("#myModal .modal-content h4");
+        titleElm.innerHTML = book.title;
 
         modalBtn.dataset.book = JSON.stringify(book);
 

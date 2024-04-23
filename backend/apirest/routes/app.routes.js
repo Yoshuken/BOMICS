@@ -178,6 +178,26 @@ class BookRouter {
     });
   }
 
+  setPatchRoute(endpoint, query) {
+    this.router.put(endpoint, verifyToken, async(req, res) => {
+      const data = req.body;
+      const result = await connexion.query("select id from user where email = ?", [req.email]);
+      
+      try {
+        connexion.query(query, [data.score, data.review, data.id, result[0].id], (error, results, fields) => {
+          if (error) {
+            this.handleError(res, error, "Query Error");
+          } else {
+            res.status(200).json({
+              "result": "correct"
+            });
+          }
+        })
+      } catch (err) {
+        this.handleError(res, err, "Server Error")
+      }
+    });
+  }
 
   getRouter() {
     return this.router;
@@ -204,6 +224,8 @@ Router.setupRouteLibrary("/bookCollection", "book_collection");
 Router.setupRouteLibrary("/comicCollection", "comics_collection");
 Router.setDeleteRoute("/deleteBook", "delete from book_collection where isbn = ? and user_id = ?");
 Router.setDeleteRoute("/deleteComic", "delete from comics_collection where id = ? and user_id = ?");
+Router.setPatchRoute("/editBooks", "update book_collection set score = ?, review = ? where isbn = ? and user_id = ?");
+Router.setPatchRoute("/editComics", "update comics_collection set score = ?, review = ? where id = ? and user_id = ?");
 
 
 module.exports = Router.getRouter();

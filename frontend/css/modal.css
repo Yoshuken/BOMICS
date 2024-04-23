@@ -12,7 +12,7 @@
     background-color: rgba(0, 0, 0, 0.4);
 }
 
-#add-form {
+.modal-content {
     background-color: #000000eb;
     margin: 10% auto;
     padding: 20px;
@@ -23,6 +23,14 @@
     justify-content: center;
     align-items: center;
     color: white;
+}
+
+#add-form, #edit-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
 }
 
 .modal-content h3 {
@@ -51,7 +59,7 @@
     height: 30px;
 }
 
-#yes-btn{
+#yes-btn, #edit-btn{
   background-color: #f8f9fa;
   border: 3px solid #f8f9fa;
   border-radius: 4px;
@@ -81,13 +89,13 @@
     white-space: pre;
 } 
 
-#yes-btn:hover, #no-btn:hover{
+#yes-btn:hover, #edit-btn:hover, #no-btn:hover{
   border-color: #849ac4;
   box-shadow: rgba(255, 255, 255, 0.3) 0 1px 1px;
   color: #202124;
 }
 
-#yes-btn:focus{
+#yes-btn:focus, #edit-btn:focus{
   border-color: #4285f4;
   outline: none;
 }

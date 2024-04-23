@@ -13,7 +13,7 @@ const loadPage = async (tab) => {
 
             const indexBodyElm = parent.document.querySelector("body");
             indexBodyElm.classList.remove("comic-style");
-            
+
             const articleElm = document.querySelector('article');
             articleElm.classList.remove("comics-article");
         } catch (err) { }
@@ -99,11 +99,33 @@ function showArticle(art) {
         deleteBtn.setAttribute("hidden-id", art.id);
         deleteBtn.setAttribute("id-from", "comics");
     };
-    deleteBtn.addEventListener("click", (e) => {
-        e.stopImmediatePropagation();
-        deleteItem(e);
-    });
+    deleteBtn.addEventListener("click", deleteItem);
     botDiv.appendChild(deleteBtn);
+
+    const editBtn = document.createElement("button");
+    editBtn.classList.add("edit-btn");
+    editBtn.appendChild(document.createTextNode("EDIT"));
+    editBtn.addEventListener("click", (e) => {
+        const modal = parent.document.querySelector("#editModal");
+        const titleElm = parent.document.querySelector("#editModal .modal-content h4");
+        titleElm.innerHTML = art.title;
+
+        const editBtn = parent.document.querySelector("#edit-btn");
+        editBtn.dataset.art = JSON.stringify(art);
+
+        modal.style.display = "block";
+    });
+    botDiv.appendChild(editBtn);
+
+    const editModalBtn = parent.document.querySelector("#edit-btn");
+    if (tabType.from == "books") {
+        editModalBtn.setAttribute("id-from", "books");
+        editModalBtn.setAttribute("hidden-id", art.isbn);
+    } else {
+        editModalBtn.setAttribute("id-from", "comics");
+        editModalBtn.setAttribute("hidden-id", art.id);
+    };
+
 
     contentDiv.appendChild(botDiv);
     articleElm.appendChild(contentDiv);
@@ -125,7 +147,33 @@ async function deleteItem(e) {
     reloadPage();
 }
 
+const modalEditBtn = parent.document.querySelector("#edit-btn");
+modalEditBtn.addEventListener("click", async (e) => {
+    const id = e.target.getAttribute("hidden-id");
+    const login_token = localStorage.getItem("login_token_key");
+    const scoreElm = parent.document.querySelector("#edit-score");
+    const reviewElm = parent.document.querySelector("#edit-review");
 
+    if (e.target.getAttribute("id-from") == "books") {
+        var res = await fetchData(apiURL + "editBooks", "put", { "id": id, "score": scoreElm.value, "review": reviewElm.value }, login_token);
+    } else {
+        var res = await fetchData(apiURL + "editComics", "put", { "id": id, "score": scoreElm.value, "review": reviewElm.value }, login_token);
+    }
+
+    closeModal();
+});
+
+function closeModal() {
+    const editModal = parent.document.querySelector("#editModal");
+    const scoreElm = parent.document.querySelector("#edit-score");
+    const reviewElm = parent.document.querySelector("#edit-review");
+    setTimeout(() => {
+        editModal.style.display = "none";
+        scoreElm.value = "";
+        reviewElm.value = "";
+        location.reload();
+    }, 700);
+}
 
 
 
