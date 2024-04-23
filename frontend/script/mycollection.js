@@ -118,6 +118,7 @@ function showArticle(art) {
     botDiv.appendChild(editBtn);
 
     const editModalBtn = parent.document.querySelector("#edit-btn");
+    // this is wrong
     if (tabType.from == "books") {
         editModalBtn.setAttribute("id-from", "books");
         editModalBtn.setAttribute("hidden-id", art.isbn);
@@ -136,6 +137,7 @@ function showArticle(art) {
 
 
 async function deleteItem(e) {
+    // re-write the code below, it always references the last one because hidden-id sets it on the modal button
     const id = e.target.getAttribute("hidden-id");
     const login_token = localStorage.getItem("login_token_key");
     if (e.target.getAttribute("id-from") == "books") {
