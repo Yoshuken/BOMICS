@@ -60,19 +60,17 @@ modalBtn.addEventListener("click", async (e) => {
 
     const login_token = localStorage.getItem("login_token_key");
     const res = await fetchData(apiURL + "insertComics", "POST", { values: comic_json }, login_token);
-    if (res.response == "yes") {
-        resElm.innerHTML = res.result;
-    } else {
-        resElm.innerHTML = res.result;
-    };
-    closeModal();
+    resElm.innerHTML = res.result;
+    closeModal(score, review);
 });
 
-function closeModal() {
+function closeModal(x, y) {
     const modal = parent.document.querySelector("#myModal");
     setTimeout(() => {
         modal.style.display = "none";
         resElm.innerHTML = "";
+        x.value = "";
+        y.value = "";
     }, 700);
 }
 

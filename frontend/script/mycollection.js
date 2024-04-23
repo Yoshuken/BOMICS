@@ -59,19 +59,28 @@ function showArticle(art) {
     const contentDiv = document.createElement("div");
     contentDiv.classList.add("content-box");
 
+    const topDiv = document.createElement("div");
+    topDiv.classList.add("top-div");
+
     const h1Elm = document.createElement("h1");
     const h1Text = document.createTextNode(art.title)
     h1Elm.appendChild(h1Text);
-    contentDiv.appendChild(h1Elm);
+    topDiv.appendChild(h1Elm);
+
+    const scoreElm = document.createElement("h2");
+    const scoreText = document.createTextNode(art.score);
+    scoreElm.appendChild(scoreText);
+    topDiv.appendChild(scoreElm);
+    contentDiv.appendChild(topDiv);
+
+    const descElm = document.createElement("p");
+    const descText = document.createTextNode(`- ${art.review}`);
+    descElm.appendChild(descText);
+    contentDiv.appendChild(descElm);
 
     const botDiv = document.createElement('div');
     botDiv.classList.add("bot-div");
     if (tabType.from == "books") {
-        const descElm = document.createElement("p");
-        const descText = document.createTextNode(art.description);
-        descElm.appendChild(descText);
-        contentDiv.appendChild(descElm);
-
         const linkElm = document.createElement("a");
         linkElm.href = art.infoLink;
         linkElm.target = "_blank";

@@ -46,7 +46,7 @@ modalBtn.addEventListener("click", async (e) => {
         book_json["review"] = review.value;
 
         const res = await fetchData(apiURL + "searchInsertBooks", "POST", { values: book_json } , login_token);
-        responseHandler(res);
+        responseHandler(res, score, review);
     } else {
         const comic = e.currentTarget.dataset.comic;
         const comic_json = JSON.parse(comic);
@@ -55,27 +55,25 @@ modalBtn.addEventListener("click", async (e) => {
         comic_json["review"] = review.value;
 
         const res = await fetchData(apiURL + "insertComics", "POST", { values: comic_json }, login_token);
-        responseHandler(res);
+        responseHandler(res, score, review);
     }
 });
 
 
-function responseHandler(res) {
+function responseHandler(res, xs, ys) {
     const resElm = parent.document.querySelector("#myModal span");
-    if (res.response == "yes") {
-        resElm.innerHTML = res.result;
-    } else {
-        resElm.innerHTML = res.result;
-    };
-    closeModal(resElm);
+    resElm.innerHTML = res.result;
+    closeModal(resElm, xs, ys);
 }
 
 
-function closeModal(res) {
+function closeModal(res, x, y) {
     const modal = parent.document.querySelector("#myModal");
     setTimeout(() => {
         modal.style.display = "none";
         res.innerHTML = "";
+        x.value = "";
+        y.value = "";
     }, 700);
 }
 

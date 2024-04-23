@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jersey+25&display=swap');
 
 * {
     margin: 0;
@@ -110,7 +111,7 @@ img {
 
 .delete-btn {
   background: #ca3737;
-  border-radius: 11px;
+  border-radius: 4px;
   color: #fff;
   padding: 5px 2px;
   cursor: pointer;
@@ -140,3 +141,12 @@ img {
   border-color: #dadada;
 }
 
+.top-div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.top-div h2 {
+    font-family: "Jersey 25", sans-serif;
+    font-size: 3em;
+}
