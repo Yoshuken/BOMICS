@@ -88,6 +88,7 @@ function showArticle(art) {
         botDiv.appendChild(linkElm);
     }
 
+    // Delete Button
     const deleteBtn = document.createElement("button");
     deleteBtn.classList.add("delete-btn");
     // When using an i element inside a btn, the eventlistener of the button with propagate to the i element, this one however will not trigger the event properly and your button will malfunction.
@@ -102,6 +103,7 @@ function showArticle(art) {
     deleteBtn.addEventListener("click", deleteItem);
     botDiv.appendChild(deleteBtn);
 
+    // Edit Button
     const editBtn = document.createElement("button");
     editBtn.classList.add("edit-btn");
     editBtn.appendChild(document.createTextNode("EDIT"));
@@ -113,20 +115,19 @@ function showArticle(art) {
         const editBtn = parent.document.querySelector("#edit-btn");
         editBtn.dataset.art = JSON.stringify(art);
 
+        const editModalBtn = parent.document.querySelector("#edit-btn");
+        // this is wrong
+        if (tabType.from == "books") {
+            editModalBtn.setAttribute("id-from", "books");
+            editModalBtn.setAttribute("hidden-id", art.isbn);
+        } else {
+            editModalBtn.setAttribute("id-from", "comics");
+            editModalBtn.setAttribute("hidden-id", art.id);
+        };
+
         modal.style.display = "block";
     });
     botDiv.appendChild(editBtn);
-
-    const editModalBtn = parent.document.querySelector("#edit-btn");
-    // this is wrong
-    if (tabType.from == "books") {
-        editModalBtn.setAttribute("id-from", "books");
-        editModalBtn.setAttribute("hidden-id", art.isbn);
-    } else {
-        editModalBtn.setAttribute("id-from", "comics");
-        editModalBtn.setAttribute("hidden-id", art.id);
-    };
-
 
     contentDiv.appendChild(botDiv);
     articleElm.appendChild(contentDiv);
@@ -149,6 +150,7 @@ async function deleteItem(e) {
     reloadPage();
 }
 
+
 const modalEditBtn = parent.document.querySelector("#edit-btn");
 modalEditBtn.addEventListener("click", async (e) => {
     const id = e.target.getAttribute("hidden-id");
@@ -164,6 +166,7 @@ modalEditBtn.addEventListener("click", async (e) => {
 
     closeModal();
 });
+
 
 function closeModal() {
     const editModal = parent.document.querySelector("#editModal");
