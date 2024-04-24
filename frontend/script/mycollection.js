@@ -110,10 +110,14 @@ function showArticle(art) {
     editBtn.addEventListener("click", (e) => {
         const modal = parent.document.querySelector("#editModal");
         const titleElm = parent.document.querySelector("#editModal .modal-content h4");
+        const scoreElm = parent.document.querySelector("#edit-score");
+        const reviewElm = parent.document.querySelector("#edit-review");
         titleElm.innerHTML = art.title;
 
         const editBtn = parent.document.querySelector("#edit-btn");
         editBtn.dataset.art = JSON.stringify(art);
+        scoreElm.value = art.score;
+        reviewElm.value = art.review;
 
         const editModalBtn = parent.document.querySelector("#edit-btn");
         // this is wrong
