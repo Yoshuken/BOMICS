@@ -18,7 +18,7 @@ router.post('/signUp', async (req, res) => {
             return res.status(200).json({ status: 204, message: "Don't leave empty fields" });
         }
 
-        const emailCount = conexionMySQL.query('select * from user where email = ?', [email]);
+        const emailCount = await conexionMySQL.query('select * from user where email = ?', [email]);
         if (emailCount.length > 0) {
             return res.status(409).json({ status: 409, message: "This Email is already registered" });
         }
